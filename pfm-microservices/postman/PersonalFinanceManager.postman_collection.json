@@ -1,0 +1,87 @@
+{
+  "info": {
+    "name": "PersonalFinanceManager",
+    "_postman_id": "b7a8c1b7-3b8a-4e14-9b99-000000000001",
+    "description": "Postman collection to test the PFM microservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Budget",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8081/budgets",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "budgets"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": \"user-1\", \"category\": \"Groceries\", \"limitAmount\": 3000}"
+        }
+      }
+    },
+    {
+      "name": "Create Expense (may exceed)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8082/expenses",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "expenses"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": \"user-1\", \"category\": \"Groceries\", \"description\": \"Monthly run\", \"amount\": 3500}"
+        }
+      }
+    },
+    {
+      "name": "List Notifications by user",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8083/notifications?userId=user-1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "notifications"
+          ],
+          "query": [
+            {
+              "key": "userId",
+              "value": "user-1"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
